@@ -18,6 +18,9 @@ class PlayerController {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $name = $_POST['name'];
             $this->playerModel->createPlayer($name);
+
+            $_SESSION['message'] = "Hráč byl úspěšně přidán.";
+
             header('Location: index.php');
             exit;
         }
@@ -30,8 +33,9 @@ class PlayerController {
             $id = $_POST['id'];
             $name = $_POST['name'];
             $rating = $_POST['rating'];
-    
             $this->playerModel->updatePlayer($id, $name, $rating);
+
+            $_SESSION['message'] = "Hráč byl úspěšně upraven.";
     
             header('Location: index.php');
             exit;
@@ -48,7 +52,11 @@ class PlayerController {
     public function deletePlayer() {
         $id = $_GET['id'];
         $this->playerModel->deletePlayer($id);
+
+        $_SESSION['message'] = "Hráč byl úspěšně smazán.";
+        
         header('Location: index.php');
+        exit;
     }
 
     public function updateElo() {
@@ -64,6 +72,8 @@ class PlayerController {
             $newElo = $currentElo + $developmentCoefficient * ($result - $expectedScore);
     
             $this->playerModel->updateElo($id, null, round($newElo));
+
+            $_SESSION['message'] = "Elo rating byl úspěšně aktualizován.";
     
             header('Location: index.php');
             exit;
