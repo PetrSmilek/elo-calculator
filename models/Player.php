@@ -30,6 +30,26 @@ class Player {
         $stmt = $this->db->prepare("DELETE FROM players WHERE id = :id");
         return $stmt->execute(['id' => $id]);
     }
+
+    public function updateElo($id, $name = null, $eloRating = null) {
+        $params = ['id' => $id];
+        $sql = "UPDATE players SET ";
+    
+        if ($name !== null) {
+            $sql .= "name = :name, ";
+            $params['name'] = $name;
+        }
+    
+        if ($eloRating !== null) {
+            $sql .= "elo_rating = :elo_rating, ";
+            $params['elo_rating'] = $eloRating;
+        }
+    
+        $sql = rtrim($sql, ', ') . " WHERE id = :id";
+    
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute($params);
+    }    
 }
 
 ?>

@@ -18,6 +18,9 @@ switch ($action) {
     case 'delete':
         $controller->deletePlayer();
         break;
+    case 'update_elo':
+        $controller->updateElo();
+        break;
     default:
         $controller->listPlayers();
         break;

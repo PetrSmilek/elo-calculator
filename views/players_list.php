@@ -5,6 +5,7 @@
     <li>
         <?= htmlspecialchars($player['name']) ?> (Elo: <?= $player['elo_rating'] ?>)
         <a href="./index.php?action=edit&id=<?= $player['id'] ?>">Editovat</a>
+        <a href="./index.php?action=update_elo&id=<?= $player['id'] ?>">Vypočítat Elo</a>
         <a href="./index.php?action=delete&id=<?= $player['id'] ?>" onclick="return confirm('Opravdu chcete smazat?');">Smazat</a>
     </li>
     <?php endforeach; ?>
