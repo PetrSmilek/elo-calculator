@@ -29,7 +29,7 @@ switch ($action) {
 }
 
 if (isset($_SESSION['message'])) {
-    echo '<p style="color: green;">' . htmlspecialchars($_SESSION['message']) . '</p>';
+    echo '<div class="alert alert-success text-center h6 mx-auto w-50" role="alert">' . htmlspecialchars($_SESSION['message']) . '</div>';
     unset($_SESSION['message']);
 }
 ?>
